@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RecipeComponent} from '../recipe/recipe.component'
 
 @Component({
   selector: 'app-home',
