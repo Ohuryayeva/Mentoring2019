@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
   openDialog() {
-    let dialogRef = this.dialog.open(DialogDemoComponent, {
+    let dialogRef = this.dialog.open(RecipeComponent, {
       width: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {

@@ -10,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
 import { RecipeComponent } from './recipe/recipe.component';
-import { DialogDemoComponent } from './dialog-demo/dialog-demo.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,7 @@ import { DialogDemoComponent } from './dialog-demo/dialog-demo.component';
     NavComponent,
     HomeComponent,
     AboutComponent,
-    RecipeComponent,
-    DialogDemoComponent
+    RecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +31,7 @@ import { DialogDemoComponent } from './dialog-demo/dialog-demo.component';
     MatInputModule,
   ],
   providers: [],
-  entryComponents: [DialogDemoComponent],
+  entryComponents: [RecipeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
