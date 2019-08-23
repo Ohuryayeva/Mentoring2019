@@ -34,3 +34,13 @@ button:focus {
 button:active {
     transform: scale(0.99);
 }
+#recipeList > div {
+    background: #e3c4ca;
+    border-radius: 5px;
+    width: 400px;
+    height: auto;
+    padding: 10px 20px;
+}
+h3 {
+  text-align: center;
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {RecipeComponent} from '../recipe/recipe.component';
-import {DialogDemoComponent} from '../dialog-demo/dialog-demo.component'
+import {Recipe} from '../recipe/recipe'
 
 @Component({
   selector: 'app-home',
@@ -9,17 +9,19 @@ import {DialogDemoComponent} from '../dialog-demo/dialog-demo.component'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  recipe: Recipe;
+  recipeList: [];
   constructor(public dialog: MatDialog) { }
-
   ngOnInit() {
+    this.recipeList = [];
   }
   openDialog() {
     let dialogRef = this.dialog.open(RecipeComponent, {
       width: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('result', result);
+      this.recipeList.push(result);
+      console.log('this.recipeList', this.recipeList);
     });
   }
 
