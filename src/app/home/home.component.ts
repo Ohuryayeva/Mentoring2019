@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {RecipeComponent} from '../recipe/recipe.component';
-import {Recipe} from '../recipe/recipe'
+import {Recipe} from '../interface'
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,7 @@ import {Recipe} from '../recipe/recipe'
 })
 export class HomeComponent implements OnInit {
   recipe: Recipe;
-  recipeList: [];
+  recipeList: object [];
   constructor(public dialog: MatDialog) { }
   ngOnInit() {
     this.recipeList = [];

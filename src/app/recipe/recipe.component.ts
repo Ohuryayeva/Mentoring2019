@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {MatDialogRef} from '@angular/material';
-import {Recipe} from './recipe'
+import {Recipe} from '../interface'
+import {RecipeIngredient} from '../interface'
 
 @Component({
   selector: 'app-recipe',
@@ -15,14 +16,20 @@ export class RecipeComponent implements OnInit {
   static create(event: Recipe) {
     return {
       name: event.name,
-      ingredients: event.ingredients
+      ingredients: [
+        {
+          name: event.name,
+          quantity: event.quantity,
+          measurementUnit: event.measurementUnit
+        }
+      ],
     };
   }
   ngOnInit() {
 	this.recipe = RecipeComponent.create({
-		name: '',
-		ingredients: [],
-	});
+    name: '',
+    ingredients: []
+  });
   }
   onCloseCancel() {
     this.thisDialogRef.close('Cancel');
