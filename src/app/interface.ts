@@ -1,15 +1,16 @@
 export interface Ingredient {
-  name: string,
+  name: string;
 }
 
-export interface RecipeIngredient extends Ingredient {
-  quantity: number,
-  measurementUnit: measurementUnit
+export interface RecipeIngredient {
+  quantity: number;
+  measurementUnit: measurementUnit;
 }
 
-export interface Recipe extends RecipeIngredient{
-  name: string,
-  ingredients: []
+export interface Recipe {
+  name: string;
+  imageUrl?: string;
+  ingredients: RecipeIngredient[];
 }
 
 enum measurementUnit {

@@ -10,6 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
 import { RecipeComponent } from './recipe/recipe.component';
+import { RecipeListComponent } from './recipe/recipe-list/recipe-list.component';
+import { RecipeDetailsComponent } from './recipe/recipe-details/recipe-details.component';
+import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { RecipeComponent } from './recipe/recipe.component';
     NavComponent,
     HomeComponent,
     AboutComponent,
-    RecipeComponent
+    RecipeComponent,
+    RecipeListComponent,
+    RecipeDetailsComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,

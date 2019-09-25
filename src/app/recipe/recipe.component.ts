@@ -1,6 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
-import {MatDialogRef} from '@angular/material';
 import {Recipe} from '../interface'
 import {RecipeIngredient} from '../interface'
 
@@ -11,33 +10,13 @@ import {RecipeIngredient} from '../interface'
 })
 
 export class RecipeComponent implements OnInit {
+  @Input()
   recipe: Recipe;
-  constructor(public thisDialogRef: MatDialogRef<RecipeComponent>, @Inject(MAT_DIALOG_DATA) public data: string) { }
-  static create(event: Recipe) {
-    return {
-      name: event.name,
-      ingredients: [
-        {
-          name: event.name,
-          quantity: event.quantity,
-          measurementUnit: event.measurementUnit
-        }
-      ],
-    };
-  }
+
+  defaultImageUrl = 'https://cdn.pixabay.com/photo/2014/12/21/23/28/recipe-575434_960_720.png';
+
+  constructor() { }
+
   ngOnInit() {
-	this.recipe = RecipeComponent.create({
-    name: '',
-    ingredients: []
-  });
-  }
-  onCloseCancel() {
-    this.thisDialogRef.close('Cancel');
-  }
-  addIngredient (){
-    let ingr = (<HTMLInputElement>document.getElementById("ingredient")).value;
-    this.recipe.ingredients.push(ingr);
-    (<HTMLInputElement>document.getElementById("ingredient")).value = ''
-    console.log('Add ingredient');
   }
 }

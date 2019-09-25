@@ -13,16 +13,5 @@ export class HomeComponent implements OnInit {
   recipeList: object [];
   constructor(public dialog: MatDialog) { }
   ngOnInit() {
-    this.recipeList = [];
   }
-  openDialog() {
-    let dialogRef = this.dialog.open(RecipeComponent, {
-      width: '600px'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.recipeList.push(result);
-      console.log('this.recipeList', this.recipeList);
-    });
-  }
-
 }
