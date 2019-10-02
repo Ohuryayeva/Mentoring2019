@@ -11,4 +11,9 @@ export class RecipeService {
   getRecipes(): Recipe []{
     return Recipes;
   }
+  getRecipe(id:number){
+    return Recipes.find(function (recipe) {
+      return recipe.id === id;
+    });
+  }
 }
