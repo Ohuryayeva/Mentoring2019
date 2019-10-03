@@ -1,1 +1,1 @@
-<app-recipe routerLink="/detail/{{recipe.id}}" *ngFor="let recipe of recipes" [recipe]="recipe" (click)="onRecipeClicked(recipe)"></app-recipe>
+<app-recipe *ngFor="let recipe of recipes" [recipe]="recipe" (click)="onRecipeClicked(recipe)"></app-recipe>

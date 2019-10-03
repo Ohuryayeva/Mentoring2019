@@ -22,7 +22,6 @@ export class RecipeListComponent implements OnInit {
   onRecipeClicked(recipe: Recipe) {
     console.log('Recipe', recipe);
     const detailsUrl = `/detail/${recipe.id}`;
-    //this.router.navigate(detailsUrl);
-    // redirect to recipe details
+    this.router.navigate([detailsUrl]);
   }
 }

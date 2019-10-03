@@ -1,8 +1,8 @@
+import { RecipeService } from './recipe/recipe.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { MatDialogModule, MatCardModule,MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -36,7 +36,10 @@ import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component'
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [],
+  providers: [{
+    provide: RecipeService,
+    useClass: RecipeService
+  }],
   entryComponents: [RecipeComponent],
   bootstrap: [AppComponent]
 })
