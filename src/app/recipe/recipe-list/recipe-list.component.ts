@@ -10,14 +10,14 @@ import {Router} from '@angular/router';
 })
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[];
-
   constructor(private recipeService: RecipeService, private router: Router) { }
 
   ngOnInit() {
     this.getRecipes();
   }
   getRecipes(): void {
-    this.recipes = this.recipeService.getRecipes();
+    this.recipeService.getRecipes().
+      subscribe(recipes => this.recipes = recipes);
   }
   onRecipeClicked(recipe: Recipe) {
     console.log('Recipe', recipe);
