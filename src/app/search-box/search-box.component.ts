@@ -1,9 +1,8 @@
 import { Component, OnInit} from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { Observable, of, fromEvent } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import {RecipeService} from "../recipe/recipe.service";
-import {text} from "@angular/core/src/render3/instructions";
+import {RecipeService} from '../recipe/recipe.service';
 
 @Component({
   selector: 'app-search-box',
@@ -12,22 +11,29 @@ import {text} from "@angular/core/src/render3/instructions";
 })
 export class SearchBoxComponent implements OnInit {
 
+  total: Observable<number> = of(0);
+  filtered: Observable<number> = of(0);
+
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
+    // create observables for total and filtered
   }
 
   searchActivated() {
     const searchBox = document.getElementById('search-box');
     const input$ = fromEvent(searchBox, 'input').pipe(
-      map((e: KeyboardEvent) => e.target.value),
+      map((e: any) => e.target.value),
       filter(text => text.length > 2),
       debounceTime(10),
       distinctUntilChanged(),
-      switchMap(() => ajax(`https://www.themealdb.com/api/json/v1/1/search.php?s=${text}`))
+      // should call recipeService.applyFilter() instead
+      switchMap(text => ajax(`https://www.themealdb.com/api/json/v1/1/search.php?s=${text}`))
     );
+
+
     input$.subscribe(data => {
-      console.log('Data', data)
+      console.log('Data', data);
       // Handle the data from the API
     });
   }

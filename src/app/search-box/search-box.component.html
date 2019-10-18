@@ -1,3 +1,6 @@
 <div class="search-wrapper">
   <input (click)="searchActivated()" type="text" id="search-box" class="input" ng-model="searchString" placeholder="Please enter search terms">
+  <div>
+    <small id="emailHelp" class="form-text text-muted">{{total | async}} recipes total, {{filtered | async}} recipes displayed</small>
+  </div>
 </div>
