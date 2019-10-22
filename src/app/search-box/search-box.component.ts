@@ -25,10 +25,10 @@ export class SearchBoxComponent implements OnInit {
     const input$ = fromEvent(searchBox, 'input').pipe(
       map((e: any) => e.target.value),
       filter(text => text.length > 2),
-      debounceTime(10),
+      debounceTime(100),
       distinctUntilChanged(),
-      // should call recipeService.applyFilter() instead
-      switchMap(text => ajax(`https://www.themealdb.com/api/json/v1/1/search.php?s=${text}`))
+      //switchMap(text => ajax(`https://www.themealdb.com/api/json/v1/1/search.php?s=${text}`))
+      switchMap(text => this.recipeService.applyFilter(text))
     );
 
 
