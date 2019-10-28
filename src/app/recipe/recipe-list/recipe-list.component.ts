@@ -18,6 +18,7 @@ export class RecipeListComponent implements OnInit {
   getRecipes(): void {
     this.recipeService.getRecipes().
       subscribe(recipes => this.recipes = recipes);
+    this.recipeService.loadRecipes();
   }
   onRecipeClicked(recipe: Recipe) {
     console.log('Recipe', recipe);

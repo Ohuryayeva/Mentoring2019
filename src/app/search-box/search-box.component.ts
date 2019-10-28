@@ -1,8 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import { Observable, of, fromEvent } from 'rxjs';
-import { ajax } from 'rxjs/ajax';
-import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
 import {RecipeService} from '../recipe/recipe.service';
+import {Recipe} from "../interface";
 
 @Component({
   selector: 'app-search-box',
@@ -10,7 +9,7 @@ import {RecipeService} from '../recipe/recipe.service';
   styleUrls: ['./search-box.component.scss']
 })
 export class SearchBoxComponent implements OnInit {
-
+  recipes: Recipe[];
   total: Observable<number> = of(0);
   filtered: Observable<number> = of(0);
 
@@ -21,20 +20,12 @@ export class SearchBoxComponent implements OnInit {
   }
 
   searchActivated() {
-    const searchBox = document.getElementById('search-box');
-    const input$ = fromEvent(searchBox, 'input').pipe(
-      map((e: any) => e.target.value),
-      filter(text => text.length > 2),
-      debounceTime(100),
-      distinctUntilChanged(),
-      //switchMap(text => ajax(`https://www.themealdb.com/api/json/v1/1/search.php?s=${text}`))
-      switchMap(text => this.recipeService.applyFilter(text))
-    );
-
-
-    input$.subscribe(data => {
-      console.log('Data', data);
-      // Handle the data from the API
-    });
+    const searchBoxValue = document.getElementById('search-box').value;
+    let searchRecipes;
+    if(searchBoxValue.length > 2){
+     this.recipeService.applyFilter(searchBoxValue);
+    } else {
+     this.recipeService.loadRecipes();
+    }
   }
 }
