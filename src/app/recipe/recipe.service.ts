@@ -15,6 +15,12 @@ export class RecipeService {
       return recipe.id === id;
     });
   }
+  removeRecipe(id: number) {
+    let recipesTest = Recipes.filter(function (recipe) {
+      return recipe.id !== id;
+    });
+    this.subject.next(recipesTest);
+  }
   applyFilter(text: string){
     let recipes = Recipes.filter(function (recipe) {
       return recipe.name.includes(text);

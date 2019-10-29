@@ -11,21 +11,28 @@ import {Recipe} from "../interface";
 export class SearchBoxComponent implements OnInit {
   recipes: Recipe[];
   total: Observable<number> = of(0);
-  filtered: Observable<number> = of(0);
+  filtered: any;
 
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
+    this.filtered = this.getRecipesCount();
     // create observables for total and filtered
   }
-
   searchActivated() {
     const searchBoxValue = document.getElementById('search-box').value;
-    let searchRecipes;
     if(searchBoxValue.length > 2){
      this.recipeService.applyFilter(searchBoxValue);
     } else {
      this.recipeService.loadRecipes();
     }
+  }
+  getRecipesCount(): any {
+    this.recipeService.getRecipes().
+    subscribe(recipes => {
+      this.filtered = recipes.length;
+      console.log('this.recipes.length', this.filtered);
+      return this.filtered;
+    });
   }
 }
