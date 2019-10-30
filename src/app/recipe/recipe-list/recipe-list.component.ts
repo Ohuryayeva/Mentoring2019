@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { Recipe } from '../../interface';
 import { RecipeService} from "../recipe.service";
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-recipe-list',
@@ -9,17 +10,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent implements OnInit {
-  recipes: Recipe[];
+  recipes: Observable<Recipe[]> = this.recipeService.getRecipes();
   constructor(private recipeService: RecipeService, private router: Router) { }
 
   ngOnInit() {
-    this.getRecipes();
+    setTimeout(() => this.recipeService.loadRecipes(), 100);
   }
-  getRecipes(): void {
-    this.recipeService.getRecipes().
-      subscribe(recipes => this.recipes = recipes);
-    this.recipeService.loadRecipes();
-  }
+
   onRecipeClicked(recipe: Recipe) {
     console.log('Recipe', recipe);
     const detailsUrl = `/detail/${recipe.id}`;

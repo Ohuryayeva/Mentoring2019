@@ -20,7 +20,7 @@ export class RecipeComponent implements OnInit {
 
   ngOnInit() {
   }
-  removeRecipe(){
-    this.recipeService.removeRecipe(1);
+  removeRecipe(recipeId){
+    this.recipeService.removeRecipe(recipeId);
   }
 }

@@ -1,4 +1,4 @@
-<div class="remove" (click)="removeRecipe()">X</div>
+<div class="remove" (click)="removeRecipe(recipe.id)">X</div>
 <div class="image" [ngStyle]="{'background-image': 'url(' + (recipe.imageUrl || defaultImageUrl) + ')'}"></div>
 <h2>{{recipe.name}}</h2>
 
