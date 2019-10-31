@@ -21,6 +21,7 @@ export class RecipeComponent implements OnInit {
   ngOnInit() {
   }
   removeRecipe(recipeId){
+    event.stopPropagation();
     this.recipeService.removeRecipe(recipeId);
   }
 }

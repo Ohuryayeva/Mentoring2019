@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {RecipeComponent} from '../recipe/recipe.component';
 import {Recipe} from '../interface'
+import {RecipeService} from "../recipe/recipe.service";
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,10 @@ import {Recipe} from '../interface'
 export class HomeComponent implements OnInit {
   recipe: Recipe;
   recipeList: object [];
-  constructor(public dialog: MatDialog) { }
+  constructor(private recipeService: RecipeService) { }
   ngOnInit() {
+  }
+  addRecipe(){
+    this.recipeService.addRecipe();
   }
 }
