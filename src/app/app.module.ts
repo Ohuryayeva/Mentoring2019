@@ -1,3 +1,4 @@
+import { HttpClientModule }    from '@angular/common/http';
 import { RecipeService } from './recipe/recipe.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,6 +30,7 @@ import { SearchBoxComponent } from './search-box/search-box.component';
     SearchBoxComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

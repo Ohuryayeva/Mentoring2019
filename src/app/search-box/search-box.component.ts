@@ -11,7 +11,7 @@ import {Recipe} from "../interface";
 export class SearchBoxComponent implements OnInit {
   recipes: Recipe[];
   searchString: string;
-  total: Observable<number> = this.recipeService.getTotalCount();
+  total: Observable<Recipe[]> = this.recipeService.getRecipes();
   filtered: Observable<number> = this.recipeService.getFilteredCount();
 
   constructor(private recipeService: RecipeService) { }
