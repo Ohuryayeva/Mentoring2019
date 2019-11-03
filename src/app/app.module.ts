@@ -1,4 +1,4 @@
-import { HttpClientModule }    from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { RecipeService } from './recipe/recipe.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +16,7 @@ import { RecipeListComponent } from './recipe/recipe-list/recipe-list.component'
 import { RecipeDetailsComponent } from './recipe/recipe-details/recipe-details.component';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
+
 
 @NgModule({
   declarations: [
@@ -42,10 +43,11 @@ import { SearchBoxComponent } from './search-box/search-box.component';
     MatInputModule,
     ReactiveFormsModule
   ],
-  providers: [{
-    provide: RecipeService,
-    useClass: RecipeService
-  }],
+    providers: [{
+      provide: RecipeService,
+      useClass: RecipeService,
+      deps: [HttpClient]
+    }],
   entryComponents: [RecipeComponent],
   bootstrap: [AppComponent]
 })

@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {RecipeService} from '../recipe/recipe.service';
 import {Recipe} from "../interface";
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-box',
@@ -11,8 +12,8 @@ import {Recipe} from "../interface";
 export class SearchBoxComponent implements OnInit {
   recipes: Recipe[];
   searchString: string;
-  total: Observable<Recipe[]> = this.recipeService.getRecipes();
-  filtered: Observable<number> = this.recipeService.getFilteredCount();
+  total: Observable<number> = this.recipeService.getRecipes().pipe(map(r => r.length));
+  filtered: Observable<number> = this.recipeService.getFilteredRecipes().pipe(map(r => r.length));
 
   constructor(private recipeService: RecipeService) { }
 
@@ -20,10 +21,6 @@ export class SearchBoxComponent implements OnInit {
     // create observables for total and filtered
   }
   searchActivated(searchBoxValue: string) {
-    if (searchBoxValue.length > 2) {
      this.recipeService.applyFilter(searchBoxValue);
-    } else {
-     this.recipeService.loadRecipes();
-    }
   }
 }

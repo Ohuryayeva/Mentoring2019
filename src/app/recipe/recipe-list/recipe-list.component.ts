@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import { Recipe } from '../../interface';
 import { RecipeService} from "../recipe.service";
 import {Router} from '@angular/router';
@@ -9,13 +9,9 @@ import {Observable} from 'rxjs';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.scss']
 })
-export class RecipeListComponent implements OnInit {
-  recipes: Observable<Recipe[]> = this.recipeService.getRecipes();
+export class RecipeListComponent {
+  recipes: Observable<Recipe[]> = this.recipeService.getFilteredRecipes();
   constructor(private recipeService: RecipeService, private router: Router) { }
-
-  ngOnInit() {
-    setTimeout(() => this.recipeService.loadRecipes(), 100);
-  }
 
   onRecipeClicked(recipe: Recipe) {
     console.log('Recipe', recipe);
