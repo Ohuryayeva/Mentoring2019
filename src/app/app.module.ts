@@ -48,7 +48,7 @@ import { SearchBoxComponent } from './search-box/search-box.component';
       useClass: RecipeService,
       deps: [HttpClient]
     }],
-  entryComponents: [RecipeComponent],
+  entryComponents: [RecipeComponent, RecipeEditComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

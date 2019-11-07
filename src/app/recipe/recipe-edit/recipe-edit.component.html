@@ -1,18 +1,40 @@
-<mat-card>
-	<div>
-	    <label for="fname">Recipe Name</label>
-	    <input matInput [(ngModel)]="recipe.name" type="text" id="fname" name="firstname" placeholder="Recipe Name..">
-	    <label for="description">Description</label>
-	    <input matInput [(ngModel)]="recipe.description" type="text" id="description" placeholder="Description..">
-	    <label for="ingredient">Ingredients</label>
-	    <input type="text" [(ngModel)]="recipe.ingredient" id="ingredient" placeholder="Ingredients.." (keyup.enter)="addIngredient()">
-		<ul>
-			<li *ngFor="let item of recipe.ingredients">
-			{{item}}
-			</li>
-		</ul>
-	</div>
-    <mat-card-actions>
-			<button mat-button [mat-dialog-close]="recipe" cdkFocusInitial>Save</button>
-  	</mat-card-actions>
-</mat-card>
+<form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+
+    <label class="label">Title</label>
+    <input class="firstInput"
+           type="text"
+           formControlName="name">
+    <p *ngIf="name.invalid && !name.pristine">Title is required.</p>
+
+    <label class="label">Description</label>
+    <textarea
+      type="text"
+      formControlName="description"></textarea>
+    <div *ngIf="description.invalid && !description.pristine">
+      <p *ngIf="description.errors.minlength">Description should be at least 6 characters.</p>
+    </div>
+
+
+    <label class="label">Ingredients</label>
+
+    <div class="ingredients" *ngIf="addIngredient">
+      <label class="label">Title</label>
+      <input type="text">
+      <label class="label">Measurement Unit</label>
+      <select name="units"type="text" *ngFor="let unit of recipeIngredient.measurementUnit">
+        <option value="glass">{{unit}}</option>
+        <option value="glass">Glass</option>
+        <option value="gram">Gram</option>
+      </select>
+      <label class="label">Quantity</label>
+      <input type="number">
+      <button>Add</button>
+    </div>
+    <!--<ul>-->
+      <!--<li *ngFor="let item of recipe.ingredients">-->
+      <!--{{item}}-->
+      <!--</li>-->
+    <!--</ul>-->
+
+  <button type="submit" [disabled]="!reactiveForm.valid">Submit</button>
+</form>

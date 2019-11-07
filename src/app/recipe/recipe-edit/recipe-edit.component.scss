@@ -1,0 +1,30 @@
+form{
+  width: 50%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr;
+  grid-gap: 15px;
+}
+label {
+  grid-column: 1 / 2;
+}
+label:first-child, .firstInput{
+  margin-top: 20px;
+}
+input{
+  grid-column: 2 / 3;
+}
+button {
+  grid-column: 2 / 3;
+}
+.ingredients {
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr;
+  grid-gap: 15px;
+}
+.ingredients input,.ingredients select {
+  grid-column: 2 / 3;
+}
+.ingredients label {
+  margin-top: 0;
+}

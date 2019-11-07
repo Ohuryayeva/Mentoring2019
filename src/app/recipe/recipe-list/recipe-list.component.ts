@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import { Recipe } from '../../interface';
 import { RecipeService} from "../recipe.service";
 import {Router} from '@angular/router';
