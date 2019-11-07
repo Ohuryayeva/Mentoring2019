@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RecipeIngredient } from '../../interface';
+import { RecipeIngredient, MeasurementUnit } from '../../interface';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -10,6 +10,7 @@ import { RecipeIngredient } from '../../interface';
 export class RecipeEditComponent implements OnInit {
   reactiveForm: FormGroup;
   recipeIngredient: RecipeIngredient;
+  measurementUnits: string[] = Object.keys(MeasurementUnit).filter(k => typeof MeasurementUnit[k as any] === 'number');
 
   constructor(private fb: FormBuilder) { }
 
@@ -19,7 +20,7 @@ export class RecipeEditComponent implements OnInit {
   createForm() {
     this.reactiveForm = this.fb.group({
       name: ['', [ Validators.required]],
-      description: ['',  [Validators.required,Validators.minLength(6)]]
+      description: ['',  [Validators.required, Validators.minLength(6)]]
     });
   }
   addIngredient() {

@@ -4,7 +4,7 @@ export interface Ingredient {
 
 export interface RecipeIngredient {
   quantity: number;
-  measurementUnit: measurementUnit;
+  measurementUnit: MeasurementUnit;
 }
 
 export interface Recipe {
@@ -14,7 +14,7 @@ export interface Recipe {
   ingredients: RecipeIngredient[];
 }
 
-enum measurementUnit {
-  gram,
-  glass
+export enum MeasurementUnit {
+  Gram,
+  Glass
 }

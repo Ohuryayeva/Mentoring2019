@@ -21,10 +21,8 @@
       <label class="label">Title</label>
       <input type="text">
       <label class="label">Measurement Unit</label>
-      <select name="units"type="text" *ngFor="let unit of recipeIngredient.measurementUnit">
-        <option value="glass">{{unit}}</option>
-        <option value="glass">Glass</option>
-        <option value="gram">Gram</option>
+      <select name="units"type="text" >
+        <option value="glass" *ngFor="let unit of measurementUnits">{{unit}}</option>
       </select>
       <label class="label">Quantity</label>
       <input type="number">
