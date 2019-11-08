@@ -1,7 +1,5 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material';
+import { Component, OnInit, Input } from '@angular/core';
 import {Recipe} from '../interface'
-import {RecipeIngredient} from '../interface'
 import {RecipeService} from "./recipe.service";
 
 @Component({

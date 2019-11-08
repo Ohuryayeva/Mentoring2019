@@ -3,6 +3,7 @@ export interface Ingredient {
 }
 
 export interface RecipeIngredient {
+  title: string;
   quantity: number;
   measurementUnit: MeasurementUnit;
 }

@@ -1,38 +1,36 @@
 <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
 
+  <label class="label">Title</label>
+  <input class="firstInput"
+         type="text"
+         formControlName="name">
+  <p *ngIf="name.invalid && !name.pristine">Title is required.</p>
+
+  <label class="label">Description</label>
+  <textarea
+    type="text"
+    formControlName="description"></textarea>
+  <div *ngIf="description.invalid && !description.pristine">
+    <p *ngIf="description.errors.minlength">Description should be at least 6 characters.</p>
+  </div>
+
+  <label class="label">Ingredients</label>
+  <div class="ingredients" *ngIf="addIngredient">
     <label class="label">Title</label>
-    <input class="firstInput"
-           type="text"
-           formControlName="name">
-    <p *ngIf="name.invalid && !name.pristine">Title is required.</p>
-
-    <label class="label">Description</label>
-    <textarea
-      type="text"
-      formControlName="description"></textarea>
-    <div *ngIf="description.invalid && !description.pristine">
-      <p *ngIf="description.errors.minlength">Description should be at least 6 characters.</p>
-    </div>
-
-
-    <label class="label">Ingredients</label>
-
-    <div class="ingredients" *ngIf="addIngredient">
-      <label class="label">Title</label>
-      <input type="text">
-      <label class="label">Measurement Unit</label>
-      <select name="units"type="text" >
-        <option value="glass" *ngFor="let unit of measurementUnits">{{unit}}</option>
-      </select>
-      <label class="label">Quantity</label>
-      <input type="number">
-      <button>Add</button>
-    </div>
-    <!--<ul>-->
-      <!--<li *ngFor="let item of recipe.ingredients">-->
-      <!--{{item}}-->
-      <!--</li>-->
-    <!--</ul>-->
+    <input type="text" formControlName="title">
+    <label class="label">Measurement Unit</label>
+    <select name="units"type="text" formControlName="unit">
+      <option value="glass" *ngFor="let unit of measurementUnits" >{{unit}}</option>
+    </select>
+    <label class="label">Quantity</label>
+    <input type="number" formControlName="quantity">
+    <button (click)="addIngredient()">Add</button>
+  </div>
+  <ul *ngIf="recipe">
+    <li *ngFor="let item of recipe.ingredients">
+    {{item}}
+    </li>
+  </ul>
 
   <button type="submit" [disabled]="!reactiveForm.valid">Submit</button>
 </form>

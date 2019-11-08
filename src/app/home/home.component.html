@@ -1,6 +1,8 @@
 <div>
-  <button mat-raised-button  (click)="showEdit = !showEdit">Add recipe</button>
-  <app-recipe-edit *ngIf="showEdit"></app-recipe-edit>
+  <div>
+    <button mat-raised-button  (click)="showEdit = !showEdit">Add recipe</button>
+    <app-recipe-edit *ngIf="showEdit"></app-recipe-edit>
+  </div>
 
   <div id="recipeList">
     <app-recipe-list></app-recipe-list>
