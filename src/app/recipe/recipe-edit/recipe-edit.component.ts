@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {NgForm,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {RecipeIngredient, MeasurementUnit, Recipe} from '../../interface';
 import {RecipeService} from "../recipe.service";
 
@@ -9,10 +9,10 @@ import {RecipeService} from "../recipe.service";
   styleUrls: ['./recipe-edit.component.scss']
 })
 export class RecipeEditComponent implements OnInit {
-  @Input() recipe: Recipe;
-
+  @ViewChild('formDirective') private formDirective: NgForm;
   reactiveForm: FormGroup;
-  recipeIngredient: RecipeIngredient;
+  recipeIngredients: RecipeIngredient [] = [];
+  recipe: Recipe []  = [];
   measurementUnits: string[] = Object.keys(MeasurementUnit).filter(k => typeof MeasurementUnit[k as any] === 'number');
 
   constructor(private fb: FormBuilder, private recipeService: RecipeService) { }
@@ -30,23 +30,32 @@ export class RecipeEditComponent implements OnInit {
     });
   }
   addIngredient() {
-    this.recipe.ingredients.push({
+    this.recipeIngredients.push({
       title: this.reactiveForm.value.title,
       quantity: this.reactiveForm.value.quantity,
       measurementUnit: this.reactiveForm.value.unit,
     });
+    this.clean();
   }
-  count(arr) {
-    let temp = {};
-    let counter = 1;
-    arr.map((el) => {
-      temp[el] = temp[el] ? ++temp[el] : counter;
-    });
-    return temp;
+  clean() {
+    this.reactiveForm.value.title = '',
+    this.reactiveForm.value.quantity = '',
+    this.reactiveForm.value.unit = ''
   }
+
   onSubmit() {
     console.log('reactiveForm' , this.reactiveForm.value);
-    this.recipeService.addRecipe();
+    let self = this;
+    const id = Math.round(Math.random() * 1000)+ new Date().getTime();
+    const recipe = Object.create(new class implements Recipe{
+      id: number = id;
+      ingredients: RecipeIngredient[]= self.recipeIngredients;
+      name: string = self.reactiveForm.value.name;
+    });
+    this.recipeService.addRecipe(recipe);
+    this.formDirective.resetForm();
+    this.recipe = [];
+    this.recipeIngredients = [];
   }
   get name() { return this.reactiveForm.get('name'); }
   get description() { return this.reactiveForm.get('description'); }

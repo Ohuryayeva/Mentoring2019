@@ -30,13 +30,8 @@ export class RecipeService {
     });
     this.subject.next(this.recipes);
   }
-  addRecipe() {
-    const id = Math.round(Math.random() * 1000);
-      this.recipes.push(new class implements Recipe {
-        id: number = id;
-        ingredients = [];
-        name: string = 'New recipe number ' + id;
-      });
+  addRecipe(recipe) {
+      this.recipes.push(recipe);
       this.subject.next(this.recipes);
   }
   applyFilter(text: string) {

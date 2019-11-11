@@ -1,4 +1,4 @@
-<form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" #formDirective="ngForm">
 
   <label class="label">Title</label>
   <input class="firstInput"
@@ -24,11 +24,11 @@
     </select>
     <label class="label">Quantity</label>
     <input type="number" formControlName="quantity">
-    <button (click)="addIngredient()">Add</button>
+    <button type="button" (click)="addIngredient()">Add</button>
   </div>
-  <ul *ngIf="recipe">
-    <li *ngFor="let item of recipe.ingredients">
-    {{item}}
+  <ul *ngIf="recipeIngredients">
+    <li *ngFor="let item of recipeIngredients">
+    {{item.title}}  {{item.quantity}}  {{item.measurementUnit}}
     </li>
   </ul>
 
