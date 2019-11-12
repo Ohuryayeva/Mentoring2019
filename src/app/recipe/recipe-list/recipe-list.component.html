@@ -1,2 +1,5 @@
 <app-search-box></app-search-box>
-<app-recipe *ngFor="let recipe of recipes | async" [recipe]="recipe" (click)="onRecipeClicked(recipe)" ></app-recipe>
+<div class="recipes">
+  <app-recipe *ngFor="let recipe of recipes | async" [recipe]="recipe" (click)="onRecipeClicked(recipe)" ></app-recipe>
+</div>
+
